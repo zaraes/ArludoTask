@@ -13,16 +13,20 @@
   <body>
     <h1>Movies</h1>
     <hr>
+    
 
 
     <div class="container">
         {% for x in movie %}
         <h5 class="text-center mt-2 mb-2">{{x.title}}</h5>
-        <h5 class="text-center mt-2 mb-2">{{x.id}}</h5>
+        <h5 class="text-center mt-2 mb-2">{{x.identifier}}</h5>
         <h5 class="text-center mt-2 mb-2">{{x.rating}}</h5>
-        <h5 class="text-center mt-2 mb-2">{{x.poster}}</h5>
+        <h5 class="text-center mt-2 mb-2">{{x.showtimes.movie_identifier}}</h5>
+        <img src="{{x.poster}}" alt="Poster" style="width:100px;height:150px;">
+        <br>
         {% endfor %}
     </div>
+
 
 
     <!-- Optional JavaScript -->
