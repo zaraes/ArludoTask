@@ -9,7 +9,3 @@ API_KEY = 1
 def index(request):
     video=Video.objects.all()
     return render(request, "index.html", {"video": video})
-
-def movie_list(request):
-    res = requests.get("data/movie_metadata.json")
-    return JsonResponse(res.json())
