@@ -1,11 +1,14 @@
 from django.db import models
 
 # Create your models here.
-class Video(models.Model):
-    caption=models.CharField(max_length=100)
-    video=models.FileField(upload_to="homepage/%y")
-    def __str__(self):
-        return self.caption
+class Movies(models.Model):
+    id=models.CharField(max_length=100, primary_key=True)
+    title=models.CharField(max_length=50)
+    rating = models.CharField(max_length=10)
+    poster = models.CharField(max_length=200)
+
+    # def __str__(self):
+    #     return f'{self.id}, {self.title}, {self.rating}, {self.poster}' 
 
 # class JSONExample(model.Model):
 #     data = models.JSONField(default='')

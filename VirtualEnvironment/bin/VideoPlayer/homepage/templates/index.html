@@ -11,17 +11,19 @@
     <title>Hello, world!</title>
   </head>
   <body>
-    <h1>Hello, world!</h1>
+    <h1>Movies</h1>
     <hr>
-    <div class="container">
-        {% for x in video %}
-        <h3 class="text-center mt-2 mb-2">{{x.caption}}</h3>
-        <video class="embed-responsive embed-responsive-16by9" controls="controls" >
-            <source src="{{x.video.url}}" type="video/mp4" />
-        </video>
 
+
+    <div class="container">
+        {% for x in movie %}
+        <h5 class="text-center mt-2 mb-2">{{x.title}}</h5>
+        <h5 class="text-center mt-2 mb-2">{{x.id}}</h5>
+        <h5 class="text-center mt-2 mb-2">{{x.rating}}</h5>
+        <h5 class="text-center mt-2 mb-2">{{x.poster}}</h5>
         {% endfor %}
     </div>
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
