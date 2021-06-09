@@ -15,6 +15,7 @@
       <div id="movie" height=auto width=auto style="overflow:auto">
         <img v-bind:src = "movie.poster" alt = "Poster" width = 200 align="left">
         <h4>{{movie.title}}</h4> <h5>{{movie.rating}}</h5>
+
         <span id = "times">
         <li v-for='time in movie.showTimes[currTheaterName]' :key='time'>
           <div id = "time">{{time}}</div>
