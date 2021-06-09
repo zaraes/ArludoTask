@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from vue_app import views as vue_views  # This line is new 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('homepage.urls'))
+    path('', include('homepage.urls')),
+    path('test', vue_views.test_vue)  # This line is new
 ]
