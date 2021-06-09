@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Testing Vue</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  </head>
+  <body>
+
+    <h1>Movies</h1>
+    <hr>
+
+
+    <div id="vue-app">
+        <input v-model="searchRequest" placeholder="search movies" v-on:keyup.enter="searchMovies">
+        <button v-on:click.prevent.stop="searchMovies">
+            search
+        </button>
+        <p v-text= "searchRequest"></p>
+    </div>
+
+
+    <div id="vue-app">
+        {% for x in movie %}
+        <h5 class="text-center mt-2 mb-2">{{x.title}}</h5>
+        <h5 class="text-center mt-2 mb-2">{{x.rating}}</h5>
+        <h5 class="text-center mt-2 mb-2">{{x.identifier}}</h5>
+        
+        <h5 class="text-center mt-2 mb-2">{{x.showtimes.movie_identifier}}</h5>
+        <img src="{{x.poster}}" alt="Poster" style="width:100px;height:150px;">
+        <br>
+        {% endfor %}
+    </div>
+
+    <script type="text/javascript">
+        let app = new Vue({
+          el: "#vue-app",
+          data: {
+            searchRequest: '',
+            movies: []
+          },
+          methods: {
+            searchMovies: function() {
+                
+                get_matching_titles(searchRequest)
+            },
+            loadMovies: () => {
+                fetch('/api/movies').then(res => {
+                    this.movies = res.movies;
+                })
+            }
+          }
+        });
+    </script>
+
+    <!-- <script type="text/javascript">
+        let app = new Vue({
+            el: "container",
+            filters: {
+                matchingTitles: function(request) {
+                    return request
+                }
+            }
+        
+        })
+    </script> -->
+
+<!-- 
+    <div id="container">
+       
+        <h5 v-for="x in movie">{{x.title}}</h5>
+        <h5 v-for="x in movie">{{x.identifier}}</h5>
+        <h5 v-for="x in movie">{{x.rating}}</h5>
+        <h5 v-for="x in movie">{{x.showtimes}}</h5>
+        <br>
+
+    </div>
+    <script type="text/javascript">
+        let app = new Vue({
+            el: "container",
+
+        })
+    </script> -->
+
+
+   
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
